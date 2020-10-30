@@ -30,11 +30,11 @@
 # Good luck.
 
 class Student:
-    def __init__(self, name, surname):
+    def __init__(self, name, surname, *marks):
         self.name = name
         self.surname = surname
         self.frequency = 100
-        self.marks = []
+        self.marks = marks
 
     def get_average_score(self):
         scoreSum = 0
@@ -57,8 +57,9 @@ class Highscool:
                 scoreSum += student.get_average_score()
             scoreAverage = scoreSum/len(studClass)
             print(
-                f"The average score of class nr. {countClass} is {scoreAverage}")
+                f"The average score of class nr. {countClass} is {scoreAverage}"
 
 
 if __name__ == "__main__":
-    someSchool = Highscool()
+    someSchool=Highscool([[Student("Adam", "Nowak", [4, 5, 3])]])
+    someSchool.print_avarage_score_in_classes()
