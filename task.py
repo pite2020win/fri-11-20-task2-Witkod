@@ -2,6 +2,8 @@ import json
 import statistics
 import logging
 import functools
+import os
+import sys
 
 
 def CheckArgumentsWrapper(object):
@@ -62,12 +64,12 @@ def get_highschool_average_attendance(highschool):
 
 
 def load_highscool_data(json_file_name):
-    with open(json_file_name, 'r') as json_file:
+    with open(os.path.join(sys.path[0], json_file_name), 'r') as json_file:
         json_object = json.load(json_file)
     return json_object
 
 
-@CheckArgumentsWrapper("schools")
+@ CheckArgumentsWrapper("schools")
 def print_general_info_about_school(schools):
     for school in schools:
         print(f"""School name: {school['name']}
@@ -75,7 +77,7 @@ def print_general_info_about_school(schools):
             School average attendance: {get_highschool_average_attendance(school)}""")
         for school_class in school['classes']:
             print(
-                f"""    Class {school_class['level']} 
+                f"""    Class {school_class['level']}
                 Class average score: {get_class_average_score(school_class)},
                 Class average attendance: {get_class_average_attendance(school_class)}""")
 
